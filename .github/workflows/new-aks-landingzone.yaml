@@ -39,7 +39,6 @@ jobs:
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }} # Create a token for all repositories in the current owner's installation
 
-
       - name: Checkout Platform Repo
         uses: actions/checkout@v6
         with:
@@ -65,6 +64,7 @@ jobs:
 
       - name: Copy template manifests into destination repo
         run: |
+          ls -R
           cp -R "${{ env.platform_repo_template_manifests }}/*" "${{ inputs.destination_repo }}/$ {{ inputs.destination_repo_path }}"
         working-directory: ${{ env.GITHUB_WORKSPACE }}
 
