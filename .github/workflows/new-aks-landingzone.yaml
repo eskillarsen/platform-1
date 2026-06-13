@@ -44,12 +44,15 @@ jobs:
       - name: Checkout Platform Repo
         uses: actions/checkout@v6
         with:
+          github-server-url: https://github.com
           repository: ${{ env.platform_repo }}
           path: ${{ env.platform_repo }}
+          persist-credentials: false
 
       - name: Checkout Destination Repo
         uses: actions/checkout@v6
         with:
+          github-server-url: https://github.com
           repository: ${{ inputs.destination_repo }}
           path: ${{ inputs.destination_repo }}
           token: ${{ steps.app-token.outputs.token }}
