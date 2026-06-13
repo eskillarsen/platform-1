@@ -16,7 +16,7 @@ on:
 
 env:
   platform_repo: "eskillarsen/platform-1"
-  platform_repo_template_manifests: "eskillarsen/platform-1/template-app-manifests"
+  platform_repo_template_manifests: "eskillarsen/platform-1/template-app-manifests/"
   github_user_name: "github-actions"
   github_email: "41898282+github-actions[bot]@users.noreply.github.com"
 
@@ -65,7 +65,9 @@ jobs:
       - name: Copy template manifests into destination repo
         run: |
           ls -R
-          cp -R "${{ env.platform_repo_template_manifests }}/*" "${{ inputs.destination_repo }}/$ {{ inputs.destination_repo_path }}"
+          mkdir -p "${{ inputs.destination_repo }}/${{ inputs.destination_repo_path }}"
+          rsync -avzr "${{ env.platform_repo_template_manifests }}" "${{ inputs.destination_repo }}/${{ inputs.destination_repo_path }}"
+          # cp -R "${{ env.platform_repo_template_manifests }}/*" "${{ inputs.destination_repo }}/${{ inputs.destination_repo_path }}"
         working-directory: ${{ env.GITHUB_WORKSPACE }}
 
       - name: Create PR with manifests
