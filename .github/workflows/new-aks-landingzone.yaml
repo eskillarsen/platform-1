@@ -19,7 +19,7 @@ env:
   platform_repo_template_manifests: "eskillarsen/platform-1/template-app-manifests/"
   github_user_name: "github-actions"
   github_email: "41898282+github-actions[bot]@users.noreply.github.com"
-  github_branch_name: "initial-k8s-manifests
+  github_branch_name: "initial-k8s-manifests"
   github_commit_message: "Add initial Kubernetes manifests for AKS landingzone"
 
 permissions:
@@ -77,7 +77,7 @@ jobs:
           git checkout -b "$github_branch_name"
           git add .
           git commit -m "$github_commit_message"
-          git push --set-upstream "https://$GITHUB_TOKEN@github.com/${{ inputs.destination_repo }}.git" "initial-k8s-manifests"
+          git push --set-upstream "https://$GITHUB_TOKEN@github.com/${{ inputs.destination_repo }}.git" "$github_branch_name"
           gh pr create --title "Pull request title" --body "Pull request body"
         working-directory: ${{ inputs.destination_repo }}
         env:
