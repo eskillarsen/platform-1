@@ -37,6 +37,7 @@ jobs:
         with:
           client-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }} # Create a token for all repositories in the current owner's installation
 
 
       - name: Checkout Platform Repo
