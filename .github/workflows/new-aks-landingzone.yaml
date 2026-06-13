@@ -79,7 +79,7 @@ jobs:
           git commit -m "$github_commit_message"
           # git push --set-upstream "https://$GITHUB_TOKEN@github.com/${{ inputs.destination_repo }}.git" "$github_branch_name"
           # fatal: could not read Password for 'https://***@github.com': No such device or address
-          gh pr create --head --title "Pull request title" --body "Pull request body"
+          gh pr create --title "Pull request title" --body "Pull request body" --head "$github_branch_name"
         working-directory: ${{ inputs.destination_repo }}
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
