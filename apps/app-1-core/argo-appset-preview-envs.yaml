@@ -10,8 +10,9 @@ spec:
         github:
           owner: eskillarsen
           repo: app-1
-          labels:
-            - preview
+          labels: [preview]
+          # api: https://github.com/
+          # appSecretName: github-app-preview-environments-creds
   template:
     metadata:
       name: 'app-1-pull-request-{{number}}' # 'app-1-{{branch}}-{{number}}'
