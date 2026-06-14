@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-1-preview-environments
+  namespace: argocd
+spec:
+  generators:
+    - pullRequest:
+        requeueAfterSeconds: 30
+        github:
+          owner: eskillarsen
+          repo: appp-1
+          labels:
+            - preview
+  template:
+    metadata:
+      name: 'app-1-{{number}}' # 'app-1-{{branch}}-{{number}}'
+    spec:
+      source:
+        repoURL: https://github.com/eskillarsen/app-1.git
+        targetRevision: '{{head_sha}}'
+        path: k8s/
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'app-1-{{number}}' # 'app-1-{{branch}}-{{number}}'
