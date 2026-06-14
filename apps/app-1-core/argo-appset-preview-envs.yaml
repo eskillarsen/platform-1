@@ -9,7 +9,7 @@ spec:
         requeueAfterSeconds: 30
         github:
           owner: eskillarsen
-          repo: appp-1
+          repo: app-1
           labels:
             - preview
   template:
