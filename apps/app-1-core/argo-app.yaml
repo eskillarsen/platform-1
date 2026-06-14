@@ -18,7 +18,7 @@ spec:
       selfHeal: true
     syncOptions:
       - RespectIgnoreDifferences=true
-  gnoreDifferences:
+  ignoreDifferences:
     - group: "*"
       kind: "Application"
       jsonPointers:
