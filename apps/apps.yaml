@@ -1,18 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
-  name: app1-core
+  name: apps-core
   namespace: argocd
 spec:
-  project: default
-  source:
-    repoURL: 'https://github.com'
-    targetRevision: HEAD
-    path: guestbook
-  destination:
-    server: 'https://default.svc'
-    namespace: my-app-namespace
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/eskillarsen/platform-1.git
+      revision: HEAD
+      directories:
+      - path: apps/*
+  template:
+    metadata:
+      name: '{{.path.basename}}'
+      namespace: "argocd"
+    spec:
+      project: "my-project"
+      source:
+        repoURL: https://github.com/eskillarsen/platform-1.git
+        targetRevision: HEAD
+        path: '{{.path.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.path.basename}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
