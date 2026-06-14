@@ -14,7 +14,7 @@ spec:
             - preview
   template:
     metadata:
-      name: 'app-1-{{number}}' # 'app-1-{{branch}}-{{number}}'
+      name: 'app-1-pull-request-{{number}}' # 'app-1-{{branch}}-{{number}}'
     spec:
       source:
         repoURL: https://github.com/eskillarsen/app-1.git
@@ -29,4 +29,4 @@ spec:
           - CreateNamespace=true
       destination:
         server: https://kubernetes.default.svc
-        namespace: 'app-1-{{number}}' # 'app-1-{{branch}}-{{number}}'
+        namespace: 'app-1-pull-request-{{number}}' # 'app-1-{{branch}}-{{number}}'
