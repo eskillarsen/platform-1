@@ -17,7 +17,7 @@ spec:
       name: '{{.path.basename}}'
       namespace: "argocd"
     spec:
-      project: "my-project"
+      project: "default"
       source:
         repoURL: https://github.com/eskillarsen/platform-1.git
         targetRevision: HEAD
