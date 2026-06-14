@@ -6,11 +6,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/eskillarsen/app-1'
+    repoURL: https://github.com/eskillarsen/app-1
     targetRevision: main
-    path: 'k8s/'
+    path: k8s/
   destination:
-    server: 'https://default.svc'
+    server: https://kubernetes.default.svc
     namespace: app-1
   syncPolicy:
     automated:
